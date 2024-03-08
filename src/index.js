@@ -1,2 +1,3 @@
 const auth = require("./middleware/auth");
-module.exports = { auth };
+const createPublisher = require("./events/publisher");
+module.exports = { auth, createPublisher };
