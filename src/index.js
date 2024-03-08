@@ -1,1 +1,2 @@
-export * from "./middleware/auth";
+const auth = require("./middleware/auth");
+module.exports = { auth };
