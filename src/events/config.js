@@ -4,11 +4,7 @@ class KafkaConfig {
   constructor() {
     this.kafka = new Kafka({
       clientId: "research-bookstore-order",
-      brokers: ["kafka-service:9092"],
-      retry: {
-        initialRetryDelay: 600, // Initial delay in milliseconds before retrying
-        maxRetries: 5,         // Maximum number of retries
-      },
+      brokers: ["kafka-service:9092"]
     });
     this.producer = this.kafka.producer();
     this.consumer = this.kafka.consumer({ groupId: "test-group" });
