@@ -1,9 +1,9 @@
 const { Kafka } = require("kafkajs");
 
 class KafkaConfig {
-  constructor() {
+  constructor(clientId) {
     this.kafka = new Kafka({
-      clientId: "microservices-research",
+      clientId: clientId,
       brokers: ["kafka-service:9092"],
     });
     this.producer = this.kafka.producer();
