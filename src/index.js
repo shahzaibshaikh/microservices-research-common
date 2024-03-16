@@ -1,3 +1,5 @@
 const auth = require("./middleware/auth");
-const KafkaConfig = require("./events/config");
-module.exports = { auth, KafkaConfig };
+const publisher = require("./events/publisher");
+const subscriber = require("./events/subscriber");
+
+module.exports = { auth, publisher, subscriber };
