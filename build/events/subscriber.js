@@ -11,7 +11,13 @@ var subscriber = function (clientId, topic, processEvent, queueGroup, clusterId)
     });
     stan.on("connect", function () {
         console.log("".concat(clientId, " connected to NATS Streaming"));
-        var subscription = stan.subscribe(topic, queueGroup);
+        var subscription;
+        if (queueGroup) {
+            subscription = stan.subscribe(topic, queueGroup);
+        }
+        else {
+            subscription = stan.subscribe(topic);
+        }
         subscription.on("message", function (msg) {
             // Process the message using the provided function
             processEvent(msg);
