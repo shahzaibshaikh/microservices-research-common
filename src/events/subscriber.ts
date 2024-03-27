@@ -1,4 +1,4 @@
-import nats, { Stan, SubscriptionOptions, Message } from "node-nats-streaming";
+import nats, { Stan, Message } from "node-nats-streaming";
 
 const subscriber = (
   clientId: string,
@@ -14,7 +14,12 @@ const subscriber = (
   stan.on("connect", () => {
     console.log(`${clientId} connected to NATS Streaming`);
 
-    const subscription = stan.subscribe(topic, queueGroup);
+    let subscription;
+    if (queueGroup) {
+      subscription = stan.subscribe(topic, queueGroup);
+    } else {
+      subscription = stan.subscribe(topic);
+    }
 
     subscription.on("message", (msg: Message) => {
       // Process the message using the provided function
