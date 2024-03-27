@@ -1,7 +1,12 @@
-const nats = require("node-nats-streaming");
+import nats, { Stan } from "node-nats-streaming";
 
-const publisher = (clientId, topic, eventData, clusterId = "microservices-research") => {
-  const stan = nats.connect(clusterId, clientId, {
+const publisher = (
+  clientId: string,
+  topic: string,
+  eventData: any,
+  clusterId: string = "microservices-research"
+): void => {
+  const stan: Stan = nats.connect(clusterId, clientId, {
     url: "nats://nats-srv:4222"
   });
 
@@ -27,4 +32,4 @@ const publisher = (clientId, topic, eventData, clusterId = "microservices-resear
   });
 };
 
-module.exports = publisher;
+export default publisher;

@@ -2,16 +2,29 @@
   "name": "@shahzaibshaikh-research-bookstore/common",
   "version": "1.0.12",
   "description": "",
-  "main": "./src/index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm publish"
+    "build": "npm run clean && tsc",
+    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm publish",
+    "clean": "del ./build/*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.21",
+    "del-cli": "^5.1.0",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "node-nats-streaming": "^0.3.2"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
   }
 }

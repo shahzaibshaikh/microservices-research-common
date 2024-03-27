@@ -1,23 +1,22 @@
-const nats = require("node-nats-streaming");
+import nats, { Stan, SubscriptionOptions, Message } from "node-nats-streaming";
 
 const subscriber = (
-  clientId,
-  topic,
-  processEvent,
-  queueGroup = null,
-  clusterId = "microservices-research"
-) => {
-  const stan = nats.connect(clusterId, clientId, {
+  clientId: string,
+  topic: string,
+  processEvent: (msg: Message) => void,
+  queueGroup: string,
+  clusterId: string = "microservices-research"
+): void => {
+  const stan: Stan = nats.connect(clusterId, clientId, {
     url: "nats://nats-srv:4222" // Replace with your NATS server URL
   });
 
   stan.on("connect", () => {
     console.log(`${clientId} connected to NATS Streaming`);
 
-    // Subscribe to the subject with the optional queue group
     const subscription = stan.subscribe(topic, queueGroup);
 
-    subscription.on("message", msg => {
+    subscription.on("message", (msg: Message) => {
       // Process the message using the provided function
       processEvent(msg);
     });
@@ -34,4 +33,4 @@ const subscriber = (
   });
 };
 
-module.exports = subscriber;
+export default subscriber;
