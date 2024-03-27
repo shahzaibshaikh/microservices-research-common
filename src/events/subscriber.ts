@@ -4,7 +4,7 @@ const subscriber = (
   clientId: string,
   topic: string,
   processEvent: (msg: Message) => void,
-  queueGroup: string,
+  queueGroup?: string,
   clusterId: string = "microservices-research"
 ): void => {
   const stan: Stan = nats.connect(clusterId, clientId, {
