@@ -8,8 +8,8 @@
     "build/**/*"
   ],
   "scripts": {
-    "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish",
+    "build": "tsc",
+    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm publish",
     "clean": "del ./build/*"
   },
   "keywords": [],
